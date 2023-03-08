@@ -31,10 +31,11 @@ using namespace std;
 vector<string> hardCodeDict1();
 vector<string> hardCodeDict2();
 vector<string> mergeVectors(const vector<string>& mergeItem1, const vector<string>& mergeItem2);
+vector<string> vectorFromFile(const char* fileName);
 
 int main()
 {
-	vector<string> newDict = mergeVectors(hardCodeDict1(), hardCodeDict2());
+	vector<string> newDict = mergeVectors(vectorFromFile("input.txt"), vectorFromFile("input.txt"));
 
 	for (unsigned int i = 0; i < newDict.size(); i++) {
 		cout << newDict.at(i) << endl;
@@ -120,4 +121,24 @@ vector<string> mergeVectors(const vector<string>& mergeItem1, const vector<strin
 		}
 	}
 	return mergedVector;
+}
+
+vector<string> vectorFromFile(const char* fileName)
+{
+	cout << fileName;
+	ifstream inputStream(fileName);
+	vector<string> fileVector;
+	if (inputStream.is_open()) {
+		while (!inputStream.eof()) {
+			string temp;
+			getline(inputStream, temp);
+			fileVector.push_back(temp);
+		}
+	}
+	else {
+		cout << "Not Open";
+	}
+
+	inputStream.close();
+	return fileVector;
 }
