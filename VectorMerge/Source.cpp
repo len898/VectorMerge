@@ -142,3 +142,14 @@ vector<string> vectorFromFile(const char* fileName)
 	inputStream.close();
 	return fileVector;
 }
+
+void writeToFile(const vector<string>& inputVect, string fileName) {
+	ofstream outPutStream(fileName);
+	unsigned int i;
+	for (i = 0; i < inputVect.size(); i++) {
+		string temp = inputVect.at(i);
+		outPutStream << temp;
+	}
+	outPutStream.close();
+
+}
